@@ -243,4 +243,30 @@ describe('Team Validator', function () {
 		];
 		assert.legalTeam(team, 'gen8ou');
 	});
+	it('should forbid certain movesets in gen1 but allow them in gen2 or tradebacks', function () {
+		let team = [
+			{species: 'kakuna', moves: ['poisonsting', 'harden', 'stringshot']},
+			{species: 'beedrill', moves: ['poisonsting', 'harden', 'stringshot']},
+			{species: 'nidoking', moves: ['furyattack', 'thrash']},
+			{species: 'exeggutor', moves: ['poisonpowder', 'stomp', 'sleeppowder', 'stunspore']},
+			// {species: 'rapidash', moves: ['payday', 'growl', 'tailwhip']}, // TODO: japan-only moves in a new test
+			// {species: 'fearow', moves: ['payday', 'peck', 'mirrormove']}, // japan-only
+		];
+		assert.false.legalTeam(team, 'gen1ou');
+		// assert.false.legalTeam(team, 'gen1jpn'); // TODO: not inheriting gen1 illegality or using obtainablemoves.banlist
+		// assert.legalTeam(team, 'gen1tradebacksou'); // TODO: not bypassing obtainablemoves.banlist correctly
+		assert.legalTeam(team, 'gen2ou');
+
+		team = [
+			{species: 'eevee', moves: ['tackle', 'growl']},
+			{species: 'vaporeon', moves: ['tackle', 'growl']},
+			{species: 'jolteon', moves: ['tackle', 'growl', 'focusenergy', 'thundershock']},
+			{species: 'flareon', moves: ['tackle', 'growl', 'focusenergy', 'ember']},
+			// {species: 'magikarp', moves: ['dragonrage', 'tackle']}, // japan-only
+		];
+		assert.false.legalTeam(team, 'gen1ou');
+		// assert.false.legalTeam(team, 'gen1jpn'); // not inheriting gen1 illegality or using obtainablemoves.banlist
+		// assert.legalTeam(team, 'gen1tradebacksou'); // not bypassing obtainablemoves.banlist correctly
+		assert.legalTeam(team, 'gen2ou');
+	});
 });
