@@ -128,7 +128,7 @@ describe('Team Validator', function () {
 		assert.legalTeam(team, 'gen2ou');
 	});
 
-	it('should allow Gen 2 events in Gen 1 Tradebacks OU', () => {
+	it('should not allow Gen 2 exclusive moves in Gen 1 Tradebacks OU', () => {
 		const team = [
 			{species: 'charizard', moves: ['crunch']},
 		];
