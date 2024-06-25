@@ -353,6 +353,8 @@ export class Format extends BasicEffect implements Readonly<BasicEffect> {
 	readonly baseRuleset: string[];
 	/** List of banned effects. */
 	readonly banlist: string[];
+	/** List of exceptional unobtainable move combinations for the format. */
+	readonly unobtainableMovesets: string[];
 	/** List of effects that aren't completely banned. */
 	readonly restricted: string[];
 	/** List of inherited banned effects to override. */
@@ -428,6 +430,7 @@ export class Format extends BasicEffect implements Readonly<BasicEffect> {
 		this.ruleset = data.ruleset || [];
 		this.baseRuleset = data.baseRuleset || [];
 		this.banlist = data.banlist || [];
+		this.unobtainableMovesets = data.unobtainableMovesets || [];
 		this.restricted = data.restricted || [];
 		this.unbanlist = data.unbanlist || [];
 		this.customRules = data.customRules || null;
